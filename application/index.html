@@ -4,34 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Replicate</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <form id="promptForm">
-      <textarea name="prompt" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <section>
-      <img id="result" alt="Generated image will appear here" />
-    </section>
-    <script>
-      document.querySelector("#promptForm").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const input = document.querySelector('textarea[name="prompt"]');
-        const response = await fetch("http://localhost:3000/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ prompt: input.value }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          document.querySelector("#result").src = data.imageUrl;
-        } else {
-          console.error("Failed to fetch image");
-        }
-      });
-    </script>
+    <main>
+      <form id="promptForm">
+        <textarea cols="30" rows="10" name="prompt" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <section>
+        <img id="result" alt="Generated image will appear here" />
+      </section>
+    </main>
+    <script src="script.js"></script>
   </body>
 </html>
